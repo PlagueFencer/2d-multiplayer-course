@@ -22,6 +22,10 @@ aim_root = NodePath("../WeaponRoot")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1728634422]
 replication_config = SubResource("SceneReplicationConfig_abrql")
 
+[node name="FireRateTimer" type="Timer" parent="." unique_id=233410337]
+wait_time = 0.125
+one_shot = true
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=670857480]
 texture = ExtResource("3_sglur")
 centered = false
