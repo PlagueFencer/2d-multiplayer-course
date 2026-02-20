@@ -7,6 +7,6 @@ var direction: Vector2
 func _process(delta: float) -> void:
 	global_position += direction * SPEED * delta
 
-func start(direction: Vector2):
-	self.direction = direction
+func start(_direction: Vector2):
+	self.direction = _direction
 	rotation = direction.angle()
