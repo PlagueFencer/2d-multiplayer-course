@@ -16,6 +16,6 @@ func start(_direction: Vector2):
 	rotation = direction.angle()
 	
 func _on_life_timer_timeout():
-	# are we on server?
+	# On server?
 	if is_multiplayer_authority():
 		queue_free()
