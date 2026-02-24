@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://dxbplh8qbmk8d" path="res://entities/enemy/enemy.gd" id="1_im2q6"]
 [ext_resource type="Texture2D" uid="uid://cjhqe0oj660u5" path="res://entities/enemy/enemy_medium.png" id="1_ksmh7"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_im2q6"]
+properties/0/path = NodePath(".:global_position")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmh7"]
 size = Vector2(16, 24)
 
@@ -11,6 +16,9 @@ radius = 4.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1859531549]
 script = ExtResource("1_im2q6")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1482745306]
+replication_config = SubResource("SceneReplicationConfig_im2q6")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=476640508]
 position = Vector2(0, -11)
