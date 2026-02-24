@@ -15,6 +15,9 @@ func start(_direction: Vector2):
 	self.direction = _direction
 	rotation = direction.angle()
 	
+func register_collision():
+	queue_free()
+	
 func _on_life_timer_timeout():
 	# On server?
 	if is_multiplayer_authority():
