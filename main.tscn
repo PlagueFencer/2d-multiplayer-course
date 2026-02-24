@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://k5ac861n1jdb" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://dslgxo1vhsg40" path="res://assets/arena.png" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://b5vuj4txjpvtm" path="res://manager/EnemyManager.tscn" id="2_h2yge"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(32, 300)
@@ -11,6 +12,10 @@ size = Vector2(500, 32)
 
 [node name="Main" type="Node" unique_id=206751777]
 script = ExtResource("1_ig7tw")
+
+[node name="EnemyManager" parent="." unique_id=668973298 node_paths=PackedStringArray("enemy_spawn_root", "spawn_rect") instance=ExtResource("2_h2yge")]
+enemy_spawn_root = NodePath("..")
+spawn_rect = NodePath("../SpawnRect")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1357761805]
 _spawnable_scenes = PackedStringArray("uid://cmsm71jq22qef", "uid://dea55va7q7xfs")
@@ -25,7 +30,18 @@ position = Vector2(320, 185)
 texture = ExtResource("2_0xm2m")
 metadata/_edit_lock_ = true
 
+[node name="SpawnRect" type="ReferenceRect" parent="." unique_id=1519073455]
+custom_minimum_size = Vector2(414, 216)
+offset_left = 113.0
+offset_top = 73.0
+offset_right = 527.0
+offset_bottom = 289.0
+mouse_filter = 2
+border_width = 1.5
+metadata/_edit_lock_ = true
+
 [node name="StaticBodies" type="Node2D" parent="." unique_id=1356256760]
+visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="StaticBodies" unique_id=1135108330]
 position = Vector2(78, 180)
