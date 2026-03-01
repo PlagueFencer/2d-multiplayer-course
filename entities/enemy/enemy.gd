@@ -2,15 +2,15 @@ extends CharacterBody2D
 
 @onready var area_2d: Area2D = $Area2D
 @onready var target_acquisition_timer: Timer = $TargetAcquisitionTimer
+@onready var health_component: HealthComponent = $HealthComponent
 
-
-var current_health: int = 5
 var target_position : Vector2
 
 func _ready():
 	area_2d.area_entered.connect(_on_area_entered)
 	target_acquisition_timer.timeout.connect(_on_target_acquisition_timer_timeout)
 	if is_multiplayer_authority():
+		health_component.died.connect(_on_died)
 		acquire_target()
 	
 func _process(delta: float) -> void:
@@ -19,9 +19,7 @@ func _process(delta: float) -> void:
 		move_and_slide()
 	
 func handle_hit():
-	current_health -= 1
-	if current_health <= 0:
-		queue_free()	
+	health_component.damage(1)
 
 func acquire_target():
 	var players = get_tree().get_nodes_in_group("player")
@@ -55,3 +53,7 @@ func _on_area_entered(other_area: Area2D):
 func _on_target_acquisition_timer_timeout():
 	if is_multiplayer_authority():
 		acquire_target()
+
+func _on_died():
+	GameEvents.emit_enemy_died()
+	queue_free()
